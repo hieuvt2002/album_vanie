@@ -7,39 +7,39 @@ const tracks = [
   {
     name: 'Nơi Này Có Anh',
     artist: 'Sơn Tùng M-TP',
-    img: 'img/vanie_1.jpg',
+    img: '/img/vanie_1.jpg',
     duration: 241,
-    src: 'music/noi-nay-co-anh.mp3',
+    src: '/music/noi-nay-co-anh.mp3',
   },
   {
     name: 'Thu Cuối',
     artist: 'Yanbi & Hằng BingBoong',
-    img: 'img/vanie_2.jpg',
+    img: '/img/vanie_2.jpg',
     duration: 198,
-    src: 'music/thu-cuoi.mp4',
+    src: '/music/thu-cuoi.mp4',
   },
   {
     name: 'Quá Lâu',
     artist: 'Vinh Khuất',
-    img: 'img/vanie_3.jpg',
+    img: '/img/vanie_3.jpg',
     duration: 275,
-    src: 'music/qua-lau.mp3',
+    src: '/music/qua-lau.mp3',
   },
   {
     name: 'Mãi mãi bên nhau',
     artist: 'Noo Phước Thịnh',
-    img: 'img/vanie_4.jpg',
+    img: '/img/vanie_4.jpg',
     duration: 275,
-    src: 'music/mai-mai-ben-nhau.mp3',
+    src: '/music/mai-mai-ben-nhau.mp3',
   },
 ];
 
 const memories = [
-  { image: 'img/vanie_1.jpg', alt: 'memory1', label: 'Chúc Vanie 💕' },
-  { image: 'img/vanie_2.jpg', alt: 'memory3', label: 'Luôn rạng rỡ 💖' },
-  { image: 'img/vanie_3.jpg', alt: 'memory4', label: 'Xinh đẹp 🌷' },
-  { image: 'img/vanie_4.jpg', alt: 'memory5', label: 'Và 💗' },
-  { image: 'img/vanie_5.jpg', alt: 'memory6', label: 'Tràn đầy năng lượng 💝' },
+  { image: '/img/vanie_1.jpg', alt: 'memory1', label: 'Chúc Vanie 💕' },
+  { image: '/img/vanie_2.jpg', alt: 'memory3', label: 'Luôn rạng rỡ 💖' },
+  { image: '/img/vanie_3.jpg', alt: 'memory4', label: 'Xinh đẹp 🌷' },
+  { image: '/img/vanie_4.jpg', alt: 'memory5', label: 'Và 💗' },
+  { image: '/img/vanie_5.jpg', alt: 'memory6', label: 'Tràn đầy năng lượng 💝' },
 ];
 
 
