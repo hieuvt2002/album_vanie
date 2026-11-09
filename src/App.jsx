@@ -133,11 +133,19 @@ function App() {
   const [particles, setParticles] = useState([]);
   const audioRef = useRef(null);
   const carouselRef = useRef(null);
+  const playlistRef = useRef(null);
   const pauseCarouselRef = useRef(false);
   const particleIdRef = useRef(0);
   const dragStateRef = useRef(null);
   const autoPlayTrackRef = useRef(false);
   const activeTrack = playlistTracks[currentTrack];
+
+  useEffect(() => () => {
+    if (dragStateRef.current) {
+      window.cancelAnimationFrame(dragStateRef.current.frame);
+      dragStateRef.current = null;
+    }
+  }, []);
 
   useEffect(() => {
     if (page === 'home') {
@@ -269,20 +277,8 @@ function App() {
     selectTrack(nextIndex, playing);
   };
 
-  const startPlaylistDrag = (event, index) => {
-    if (event.button !== 0) return;
-    event.preventDefault();
-    event.stopPropagation();
-    event.currentTarget.setPointerCapture(event.pointerId);
-    dragStateRef.current = { pointerId: event.pointerId, from: index, to: index };
-    setDraggingTrack(index);
-    setDragOverTrack(index);
-  };
-
-  const movePlaylistDrag = (event) => {
-    const drag = dragStateRef.current;
-    if (!drag || drag.pointerId !== event.pointerId) return;
-    const target = document.elementFromPoint(event.clientX, event.clientY)?.closest('[data-track-index]');
+  const updatePlaylistDropTarget = (drag) => {
+    const target = document.elementFromPoint(drag.clientX, drag.clientY)?.closest('[data-track-index]');
     if (!target) return;
     const targetIndex = Number(target.dataset.trackIndex);
     if (!Number.isInteger(targetIndex)) return;
@@ -290,9 +286,57 @@ function App() {
     setDragOverTrack(targetIndex);
   };
 
+  const autoScrollPlaylist = () => {
+    const drag = dragStateRef.current;
+    const playlist = playlistRef.current;
+    if (!drag || !playlist) return;
+
+    const bounds = playlist.getBoundingClientRect();
+    const edgeSize = Math.min(64, bounds.height * 0.22);
+    const topDistance = drag.clientY - bounds.top;
+    const bottomDistance = bounds.bottom - drag.clientY;
+
+    if (topDistance >= 0 && topDistance < edgeSize) {
+      const speed = Math.ceil(14 * (1 - topDistance / edgeSize));
+      playlist.scrollTop -= speed;
+    } else if (bottomDistance >= 0 && bottomDistance < edgeSize) {
+      const speed = Math.ceil(14 * (1 - bottomDistance / edgeSize));
+      playlist.scrollTop += speed;
+    }
+
+    updatePlaylistDropTarget(drag);
+    drag.frame = window.requestAnimationFrame(autoScrollPlaylist);
+  };
+
+  const startPlaylistDrag = (event, index) => {
+    if (event.button !== 0) return;
+    event.preventDefault();
+    event.stopPropagation();
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragStateRef.current = {
+      pointerId: event.pointerId,
+      from: index,
+      to: index,
+      clientX: event.clientX,
+      clientY: event.clientY,
+      frame: window.requestAnimationFrame(autoScrollPlaylist),
+    };
+    setDraggingTrack(index);
+    setDragOverTrack(index);
+  };
+
+  const movePlaylistDrag = (event) => {
+    const drag = dragStateRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    drag.clientX = event.clientX;
+    drag.clientY = event.clientY;
+    updatePlaylistDropTarget(drag);
+  };
+
   const finishPlaylistDrag = (event, shouldReorder) => {
     const drag = dragStateRef.current;
     if (!drag || drag.pointerId !== event.pointerId) return;
+    window.cancelAnimationFrame(drag.frame);
     dragStateRef.current = null;
     setDraggingTrack(null);
     setDragOverTrack(null);
@@ -447,7 +491,7 @@ function App() {
               </button>
               <button className="ctrl-btn" type="button" onClick={() => changeTrack(1)} aria-label="Bài tiếp theo">⏭</button>
             </div>
-            <div className="playlist">
+            <div className="playlist" ref={playlistRef}>
               {playlistTracks.map((playlistTrack, index) => (
                 <div
                   className={[
