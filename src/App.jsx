@@ -96,9 +96,9 @@ const floatingEmojis = ['💕', '🌸', '💗', '🌷', '💓', '✨', '🌼', '
 const particleEmojis = ['💕', '💗', '💖', '🌸'];
 const letterText = `Gửi cậu, cô gái đặc biệt của tớ ❤️,
 
-Tớ đã dành một chút thời gian để tạo nên album này. Có lẽ tớ không giỏi nói những lời ngọt ngào, nên muốn gửi gắm cảm xúc của mình qua âm nhạc.
+Tớ đã dành một chút thời gian để tạo nên album này. Có lẽ tớ không giỏi nói những lời ngọt ngào, nên muốn gửi gắm cảm xúc, tình cảm chân thành của mình qua album này.
 
-Hy vọng khi nghe album này, cậu sẽ mỉm cười và biết rằng có một người đang dành cho cậu những tình cảm rất đặc biệt.
+Hy vọng khi nghe album này, cậu sẽ mỉm cười mỗi ngày và biết rằng có một người đang dành cho cậu những tình cảm rất đặc biệt.
 
 Mong rằng câu chuyện của chúng ta sẽ có thêm nhiều chương thật đẹp. 💌`;
 
