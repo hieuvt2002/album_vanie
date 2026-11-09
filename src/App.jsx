@@ -5,32 +5,81 @@ const christmasAnimationUrl = new URL('../animation/snow_santa.lottie', import.m
 
 const tracks = [
   {
-    name: 'Nơi Này Có Anh',
-    artist: 'Sơn Tùng M-TP',
-    img: '/img/vanie_1.jpg',
-    duration: 241,
-    src: '/music/noi-nay-co-anh.mp3',
+    name: 'Viva La Vida',
+    artist: 'Coldplay',
+    img: '/img/vanie_5.jpg',
+    duration: 275,
+    src: '/music/viva_la_vida.mp3',
   },
   {
-    name: 'Thu Cuối',
-    artist: 'Yanbi & Hằng BingBoong',
+    name: 'Dark Paradise',
+    artist: 'Lana Del Rey',
     img: '/img/vanie_2.jpg',
     duration: 198,
-    src: '/music/thu-cuoi.mp4',
+    src: '/music/dark_paradise.mp3',
   },
   {
-    name: 'Quá Lâu',
-    artist: 'Vinh Khuất',
+    name: 'Beautiful In White',
+    artist: 'Shane Filan',
     img: '/img/vanie_3.jpg',
     duration: 275,
-    src: '/music/qua-lau.mp3',
+    src: '/music/beautiful_in_white.mp3',
   },
   {
-    name: 'Mãi mãi bên nhau',
-    artist: 'Noo Phước Thịnh',
+    name: 'Just Give Me a Reason',
+    artist: 'P!nk',
     img: '/img/vanie_4.jpg',
     duration: 275,
-    src: '/music/mai-mai-ben-nhau.mp3',
+    src: '/music/just_give_me_a_reason.mp3',
+  },
+  {
+    name: 'Hành Trình Có Em',
+    artist: 'Phạm Minh Thành',
+    img: '/img/vanie_6.jpg',
+    duration: 275,
+    src: '/music/hanh_trinh_co_em.mp3',
+  },
+  {
+    name: 'Lover',
+    artist: 'Taylor Swift',
+    img: '/img/vanie_7.jpg',
+    duration: 275,
+    src: '/music/lover.mp3',
+  },
+  {
+    name: 'một đời x Người Tốt Nhất Cho Em',
+    artist: '14 CASPER',
+    img: '/img/vanie_8.jpg',
+    duration: 275,
+    src: '/music/mot_doi_nguoi_tot_nhat_cho_em.mp3',
+  },
+  {
+    name: 'Photograph',
+    artist: 'Ed Sheeran',
+    img: '/img/vanie_9.jpg',
+    duration: 275,
+    src: '/music/photograph.mp3',
+  },
+  {
+    name: 'Nothings Gonna Change My Love For You',
+    artist: 'George Benson',
+    img: '/img/vanie_10.jpg',
+    duration: 275,
+    src: '/music/nothing_gonna_change_my_love_for_you.mp3',
+  },
+  {
+    name: 'Radio',
+    artist: 'Lana Del Rey',
+    img: '/img/vanie_11.jpg',
+    duration: 275,
+    src: '/music/radio.mp3',
+  },
+  {
+    name: 'She Neva Knows',
+    artist: 'JustaTee',
+    img: '/img/vanie_12.jpg',
+    duration: 275,
+    src: '/music/she_neva_knows.mp3',
   },
 ];
 
@@ -45,6 +94,13 @@ const memories = [
 
 const floatingEmojis = ['💕', '🌸', '💗', '🌷', '💓', '✨', '🌼', '💝'];
 const particleEmojis = ['💕', '💗', '💖', '🌸'];
+const letterText = `Gửi cậu, cô gái đặc biệt của tớ ❤️,
+
+Tớ đã dành một chút thời gian để tạo nên album này. Có lẽ tớ không giỏi nói những lời ngọt ngào, nên muốn gửi gắm cảm xúc của mình qua âm nhạc.
+
+Hy vọng khi nghe album này, cậu sẽ mỉm cười và biết rằng có một người đang dành cho cậu những tình cảm rất đặc biệt.
+
+Mong rằng câu chuyện của chúng ta sẽ có thêm nhiều chương thật đẹp. 💌`;
 
 function formatTime(time) {
   const totalSeconds = Number.isFinite(time) ? Math.floor(time) : 0;
@@ -109,12 +165,13 @@ function App() {
   useEffect(() => {
     if (page !== 'letter') return undefined;
     setTypedLetter('');
+    const characters = Array.from(letterText);
     let index = 0;
     const timer = window.setInterval(() => {
       index += 1;
-      setTypedLetter(letterText.slice(0, index));
-      if (index >= letterText.length) window.clearInterval(timer);
-    }, 35);
+      setTypedLetter(characters.slice(0, index).join(''));
+      if (index >= characters.length) window.clearInterval(timer);
+    }, 22);
     return () => window.clearInterval(timer);
   }, [page]);
 
@@ -161,6 +218,12 @@ function App() {
   }, [particles]);
 
   const goToPage = (nextPage) => {
+    if (nextPage === 'music') {
+      audioRef.current?.play().catch((error) => {
+        console.error('Unable to autoplay the selected track:', error);
+        setPlaying(false);
+      });
+    }
     setPage(nextPage);
     window.scrollTo(0, 0);
   };
@@ -187,6 +250,15 @@ function App() {
   };
 
   const selectTrack = (index, shouldPlay = false) => {
+    if (index === currentTrack) {
+      if (shouldPlay) {
+        audioRef.current?.play().catch((error) => {
+          console.error('Unable to play the selected track:', error);
+          setPlaying(false);
+        });
+      }
+      return;
+    }
     setPlaying(false);
     autoPlayTrackRef.current = shouldPlay;
     setCurrentTrack(index);
@@ -194,7 +266,7 @@ function App() {
 
   const changeTrack = (direction) => {
     const nextIndex = (currentTrack + direction + playlistTracks.length) % playlistTracks.length;
-    selectTrack(nextIndex);
+    selectTrack(nextIndex, playing);
   };
 
   const startPlaylistDrag = (event, index) => {
@@ -327,6 +399,11 @@ function App() {
               <div className="icon">🖼️</div>
               <div className="label">Image</div>
             </div>
+            <div className="menu-card" onClick={(event) => { goToPage('letter'); spawnHearts(event); }}>
+              <span className="deco" style={{ bottom: 8, right: 14 }}>💌</span>
+              <div className="icon">✉️</div>
+              <div className="label">Letter</div>
+            </div>
           </div>
         </section>
 
@@ -381,7 +458,7 @@ function App() {
                   ].filter(Boolean).join(' ')}
                   key={playlistTrack.src}
                   data-track-index={index}
-                  onClick={() => selectTrack(index)}
+                  onClick={() => selectTrack(index, true)}
                 >
                   <img className="playlist-thumb" src={playlistTrack.img} alt="" />
                   <div className="playlist-info">
@@ -422,10 +499,17 @@ function App() {
         <section className={`page ${page === 'letter' ? 'active' : ''}`} id="letter">
           <div className="letter-card">
             <button className="close-btn" type="button" onClick={goHome} aria-label="Đóng">✕</button>
-            <div className="letter-content">
-              {typedLetter}
-              <span className="cursor" />
+            <div className="letter-heading">
+              <span className="letter-kicker">A LITTLE NOTE FOR YOU</span>
+              <h1>Gửi Vanie <span aria-hidden="true">💌</span></h1>
+              <span className="letter-divider" aria-hidden="true">✦</span>
             </div>
+            <div className="letter-content" aria-live="polite">
+              {typedLetter}<span className="cursor" />
+            </div>
+            {typedLetter.length === Array.from(letterText).length && (
+              <div className="letter-signature">Thương mến, <span>💕</span></div>
+            )}
             <div className="letter-bear">🐻</div>
           </div>
         </section>
