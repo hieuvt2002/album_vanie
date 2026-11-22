@@ -1,5 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
+
+const DotLottieReact = lazy(() =>
+  import('@lottiefiles/dotlottie-react').then((module) => ({ default: module.DotLottieReact })),
+);
 
 const christmasAnimationUrl = new URL('../animation/snow_santa.lottie', import.meta.url).href;
 
@@ -7,144 +10,144 @@ const tracks = [
   {
     name: 'Viva La Vida',
     artist: 'Coldplay',
-    img: '/img/vanie_5.jpg',
+    img: '/img/vanie_5.webp',
     duration: 275,
     src: '/music/viva_la_vida.mp3',
   },
   {
     name: 'Dark Paradise',
     artist: 'Lana Del Rey',
-    img: '/img/vanie_2.jpg',
+    img: '/img/vanie_2.webp',
     duration: 198,
     src: '/music/dark_paradise.mp3',
   },
   {
     name: 'Beautiful In White',
     artist: 'Shane Filan',
-    img: '/img/vanie_3.jpg',
+    img: '/img/vanie_3.webp',
     duration: 275,
     src: '/music/beautiful_in_white.mp3',
   },
   {
     name: 'Just Give Me a Reason',
     artist: 'P!nk',
-    img: '/img/vanie_4.jpg',
+    img: '/img/vanie_4.webp',
     duration: 275,
     src: '/music/just_give_me_a_reason.mp3',
   },
   {
     name: 'Hành Trình Có Em',
     artist: 'Phạm Minh Thành',
-    img: '/img/vanie_6.jpg',
+    img: '/img/vanie_6.webp',
     duration: 275,
     src: '/music/hanh_trinh_co_em.mp3',
   },
   {
     name: 'Lover',
     artist: 'Taylor Swift',
-    img: '/img/vanie_7.jpg',
+    img: '/img/vanie_7.webp',
     duration: 275,
     src: '/music/lover.mp3',
   },
   {
     name: 'Một đời x Người Tốt Nhất Cho Em',
     artist: '14 CASPER',
-    img: '/img/vanie_8.jpg',
+    img: '/img/vanie_8.webp',
     duration: 275,
     src: '/music/mot_doi_nguoi_tot_nhat_cho_em.mp3',
   },
   {
     name: 'Photograph',
     artist: 'Ed Sheeran',
-    img: '/img/vanie_9.jpg',
+    img: '/img/vanie_9.webp',
     duration: 275,
     src: '/music/photograph.mp3',
   },
   {
     name: 'Nothings Gonna Change My Love For You',
     artist: 'George Benson',
-    img: '/img/vanie_10.jpg',
+    img: '/img/vanie_10.webp',
     duration: 275,
     src: '/music/nothing_gonna_change_my_love_for_you.mp3',
   },
   {
     name: 'Radio',
     artist: 'Lana Del Rey',
-    img: '/img/vanie_11.jpg',
+    img: '/img/vanie_11.webp',
     duration: 275,
     src: '/music/radio.mp3',
   },
   {
     name: 'She Neva Knows',
     artist: 'JustaTee',
-    img: '/img/vanie_12.jpg',
+    img: '/img/vanie_12.webp',
     duration: 275,
     src: '/music/she_neva_knows.mp3',
   },
   {
     name: 'Wild',
     artist: 'MONOGEM',
-    img: '/img/vanie_13.jpg',
+    img: '/img/vanie_13.webp',
     duration: 275,
     src: '/music/wild.mp3',
   },
   {
     name: 'For you',
     artist: 'Liam Payne, Rita Ora',
-    img: '/img/vanie_14.jpg',
+    img: '/img/vanie_14.webp',
     duration: 275,
     src: '/music/for_you.mp3',
   },
   {
     name: 'Yesterday Once More',
     artist: 'The Carpenters',
-    img: '/img/vanie_15.jpg',
+    img: '/img/vanie_15.webp',
     duration: 275,
     src: '/music/for_you.mp3',
   },
   {
     name: 'Opalite',
     artist: 'Taylor Swift',
-    img: '/img/vanie_16.jpg',
+    img: '/img/vanie_16.webp',
     duration: 275,
     src: '/music/opalite.mp3',
   },
   {
     name: 'Confess To You',
     artist: '김예림(림킴) ',
-    img: '/img/vanie_17.jpg',
+    img: '/img/vanie_17.webp',
     duration: 275,
     src: '/music/confess_to_you.mp3',
   },
   {
     name: 'I',
     artist: 'Taeyeon (태연)',
-    img: '/img/vanie_18.jpg',
+    img: '/img/vanie_18.webp',
     duration: 275,
     src: '/music/i.mp3',
   },
   {
     name: 'THẾ GIỚI CỦA ANH ',
     artist: 'TINH HÀ SAY HI',
-    img: '/img/vanie_19.jpg',
+    img: '/img/vanie_19.webp',
     duration: 275,
     src: '/music/the_gioi_cua_anh.mp3',
   },
   {
     name: 'Heal The World ',
     artist: 'Michael Jackson',
-    img: '/img/vanie_20.jpg',
+    img: '/img/vanie_20.webp',
     duration: 275,
     src: '/music/heal_the_world.mp3',
   },
 ];
 
 const memories = [
-  { image: '/img/vanie_1.jpg', alt: 'memory1', label: 'Chúc Vanie 💕' },
-  { image: '/img/vanie_2.jpg', alt: 'memory3', label: 'Luôn rạng rỡ 💖' },
-  { image: '/img/vanie_3.jpg', alt: 'memory4', label: 'Xinh đẹp 🌷' },
-  { image: '/img/vanie_4.jpg', alt: 'memory5', label: 'Và 💗' },
-  { image: '/img/vanie_5.jpg', alt: 'memory6', label: 'Tràn đầy năng lượng 💝' },
+  { image: '/img/vanie_1.webp', alt: 'memory1', label: 'Chúc Vanie 💕' },
+  { image: '/img/vanie_2.webp', alt: 'memory3', label: 'Luôn rạng rỡ 💖' },
+  { image: '/img/vanie_3.webp', alt: 'memory4', label: 'Xinh đẹp 🌷' },
+  { image: '/img/vanie_4.webp', alt: 'memory5', label: 'Và 💗' },
+  { image: '/img/vanie_5.webp', alt: 'memory6', label: 'Tràn đầy năng lượng 💝' },
 ];
 
 
@@ -455,13 +458,15 @@ function App() {
 
       {christmasThemeEnabled && (
         <div className="christmas-animation" aria-hidden="true">
-          <DotLottieReact
-            src={christmasAnimationUrl}
-            loop
-            autoplay
-            layout={{ fit: 'cover', align: [0.5, 0.5] }}
-            style={{ width: '100%', height: '100%' }}
-          />
+          <Suspense fallback={null}>
+            <DotLottieReact
+              src={christmasAnimationUrl}
+              loop
+              autoplay
+              layout={{ fit: 'cover', align: [0.5, 0.5] }}
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Suspense>
         </div>
       )}
 
@@ -515,7 +520,7 @@ function App() {
               <span>MUSIC PLAYER</span>
             </div>
             <div className="album-art">
-              <img src={track.img} alt={track.name} />
+              <img src={track.img} alt={track.name} loading="lazy" decoding="async" />
               <div className="overlay" />
             </div>
             <div className="track-title">{track.name}</div>
@@ -560,7 +565,7 @@ function App() {
                   data-track-index={index}
                   onClick={() => selectTrack(index, true)}
                 >
-                  <img className="playlist-thumb" src={playlistTrack.img} alt="" />
+                  <img className="playlist-thumb" src={playlistTrack.img} alt="" loading="lazy" decoding="async" />
                   <div className="playlist-info">
                     <div className="pname">{playlistTrack.name}</div>
                     <div className="partist">{playlistTrack.artist}</div>
@@ -585,6 +590,7 @@ function App() {
           <audio
             ref={audioRef}
             src={track.src}
+            preload="none"
             onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
             onLoadedMetadata={(event) => setDuration(event.currentTarget.duration || track.duration)}
             onPlay={() => setPlaying(true)}
@@ -626,7 +632,7 @@ function App() {
             <div className="carousel-track" ref={carouselRef}>
               {[...memories, ...memories].map((memory, index) => (
                 <div className="polaroid" key={`${memory.image}-${index}`}>
-                  <img src={memory.image} alt={memory.alt} />
+                  <img src={memory.image} alt={memory.alt} loading="lazy" decoding="async" />
                   <div className="polaroid-label">{memory.label}</div>
                 </div>
               ))}

@@ -1,13 +1,13 @@
 
         :root {
-            --pink-bg: #ffd6e7;
-            --pink-light: #ffe4f0;
+            --pink-bg: #d8eef3;
+            --pink-light: #e4f4f7;
             --pink-card: rgba(255, 255, 255, 0.55);
-            --pink-deep: #ff6fa8;
-            --pink-mid: #ff9ec6;
-            --pink-text: #d63a7a;
-            --pink-shadow: rgba(255, 111, 168, 0.25);
-            --teal: #5ecfcf;
+            --pink-deep: #68aec0;
+            --pink-mid: #a6d7e4;
+            --pink-text: #477f91;
+            --pink-shadow: rgba(104, 174, 192, 0.25);
+            --teal: #86cdd3;
         }
 
         * {
@@ -65,7 +65,7 @@
             border: 1.5px solid rgba(255, 255, 255, 0.7);
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.72);
-            box-shadow: 0 3px 14px rgba(107, 30, 48, 0.2);
+            box-shadow: 0 3px 14px rgba(70, 126, 145, 0.2);
             font-size: 1.35rem;
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -73,7 +73,7 @@
 
         .christmas-toggle:hover {
             transform: scale(1.08);
-            box-shadow: 0 5px 18px rgba(107, 30, 48, 0.28);
+            box-shadow: 0 5px 18px rgba(70, 126, 145, 0.28);
         }
 
         .christmas-toggle:focus-visible {
@@ -162,7 +162,7 @@
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            border: 1.5px solid rgba(255, 160, 200, 0.35);
+            border: 1.5px solid rgba(166, 215, 228, 0.45);
             box-shadow: 0 6px 24px var(--pink-shadow);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             animation: popIn 0.6s cubic-bezier(.36, 1.56, .64, 1) both;
@@ -186,7 +186,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 200, 225, 0.1));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(190, 226, 235, 0.14));
             pointer-events: none;
         }
 
@@ -220,7 +220,7 @@
 
         /* MUSIC PAGE */
         #music {
-            background: linear-gradient(160deg, #ffd6e7 0%, #ffb3d1 100%);
+            background: linear-gradient(160deg, #d8eef3 0%, #b9dde7 100%);
             padding: 24px 16px;
         }
 
@@ -231,8 +231,8 @@
             padding: 24px 20px 28px;
             width: 100%;
             max-width: 340px;
-            box-shadow: 0 10px 40px rgba(255, 100, 160, 0.25);
-            border: 1.5px solid rgba(255, 180, 215, 0.5);
+            box-shadow: 0 10px 40px rgba(104, 174, 192, 0.25);
+            border: 1.5px solid rgba(166, 215, 228, 0.55);
             animation: popIn 0.5s cubic-bezier(.36, 1.56, .64, 1) both;
             position: relative;
         }
@@ -264,7 +264,7 @@
             overflow: hidden;
             margin-bottom: 18px;
             position: relative;
-            box-shadow: 0 6px 24px rgba(255, 100, 160, 0.3);
+            box-shadow: 0 6px 24px rgba(104, 174, 192, 0.3);
         }
 
         .album-art img {
@@ -276,7 +276,7 @@
         .album-art .overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 50%, rgba(255, 80, 140, 0.3));
+            background: linear-gradient(to bottom, transparent 50%, rgba(104, 174, 192, 0.3));
         }
 
         .track-title {
@@ -303,7 +303,7 @@
         .progress-track {
             flex: 1;
             height: 4px;
-            background: #f5c0d8;
+            background: #c8e3eb;
             border-radius: 99px;
             position: relative;
             cursor: pointer;
@@ -356,7 +356,7 @@
             width: 54px;
             height: 54px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--pink-deep), #ff9ec6);
+            background: linear-gradient(135deg, var(--pink-deep), #a6d7e4);
             border: none;
             cursor: pointer;
             display: flex;
@@ -364,13 +364,13 @@
             justify-content: center;
             font-size: 1.4rem;
             color: white;
-            box-shadow: 0 4px 16px rgba(255, 100, 160, 0.45);
+            box-shadow: 0 4px 16px rgba(104, 174, 192, 0.45);
             transition: transform 0.15s, box-shadow 0.15s;
         }
 
         .play-btn:hover {
             transform: scale(1.08);
-            box-shadow: 0 6px 24px rgba(255, 100, 160, 0.6);
+            box-shadow: 0 6px 24px rgba(104, 174, 192, 0.6);
         }
 
         .play-btn:active {
@@ -385,7 +385,7 @@
             overflow-y: auto;
             overscroll-behavior: contain;
             scrollbar-width: thin;
-            scrollbar-color: #ef9fbd rgba(255, 255, 255, 0.35);
+            scrollbar-color: #91c9d8 rgba(255, 255, 255, 0.35);
             padding-right: 4px;
         }
 
@@ -400,7 +400,7 @@
 
         .playlist::-webkit-scrollbar-thumb {
             border-radius: 99px;
-            background: #ef9fbd;
+            background: #91c9d8;
         }
 
         .playlist-item {
@@ -416,13 +416,13 @@
         }
 
         .playlist-item:hover {
-            background: rgba(255, 180, 215, 0.4);
+            background: rgba(166, 215, 228, 0.42);
             transform: translateX(4px);
         }
 
         .playlist-item.active {
-            background: rgba(255, 100, 160, 0.15);
-            border-color: rgba(255, 100, 160, 0.3);
+            background: rgba(104, 174, 192, 0.15);
+            border-color: rgba(104, 174, 192, 0.3);
         }
 
         .playlist-item.dragging {
@@ -443,7 +443,7 @@
             border: 0;
             border-radius: 8px;
             background: transparent;
-            color: #c77b9b;
+            color: #719dab;
             font-size: 1.3rem;
             line-height: 1;
             cursor: grab;
@@ -453,7 +453,7 @@
 
         .playlist-drag-handle:hover,
         .playlist-drag-handle:focus-visible {
-            background: rgba(255, 111, 168, 0.12);
+            background: rgba(104, 174, 192, 0.12);
             color: var(--pink-deep);
             outline: none;
         }
@@ -506,7 +506,7 @@
 
         /* LETTER PAGE */
         #letter {
-            background: linear-gradient(160deg, #ffe0ee 0%, #ffc8de 100%);
+            background: linear-gradient(160deg, #e4f4f7 0%, #bddfe8 100%);
             padding: 24px 16px;
         }
 
@@ -517,8 +517,8 @@
             padding: 28px 24px 32px;
             width: 100%;
             max-width: 340px;
-            box-shadow: 0 10px 40px rgba(255, 100, 160, 0.25);
-            border: 1.5px solid rgba(255, 180, 215, 0.5);
+            box-shadow: 0 10px 40px rgba(104, 174, 192, 0.25);
+            border: 1.5px solid rgba(166, 215, 228, 0.55);
             animation: popIn 0.5s cubic-bezier(.36, 1.56, .64, 1) both;
             position: relative;
             min-height: 420px;
@@ -532,7 +532,7 @@
         }
 
         .letter-kicker {
-            color: #d987a8;
+            color: #719dab;
             font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.18em;
@@ -549,7 +549,7 @@
         .letter-divider {
             display: block;
             margin-top: 8px;
-            color: #f0a2be;
+            color: #91c9d8;
             font-size: 1rem;
         }
 
@@ -557,7 +557,7 @@
             flex: 1;
             font-size: 0.97rem;
             line-height: 1.85;
-            color: #c04a7a;
+            color: #477f91;
             font-weight: 500;
             white-space: pre-wrap;
             min-height: 300px;
@@ -614,7 +614,7 @@
             z-index: 100;
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(8px);
-            border: 1.5px solid rgba(255, 160, 200, 0.4);
+            border: 1.5px solid rgba(166, 215, 228, 0.48);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -640,7 +640,7 @@
         .gallery-back-btn {
             margin-top: 20px;
             background: rgba(255, 255, 255, 0.6);
-            border: 1.5px solid rgba(255, 160, 200, 0.4);
+            border: 1.5px solid rgba(166, 215, 228, 0.48);
             padding: 10px 28px;
             border-radius: 99px;
             color: var(--pink-deep);
@@ -652,7 +652,7 @@
 
         /* ===== IMAGE PAGE ===== */
         #image-page {
-            background: linear-gradient(160deg, #ffd6e7 0%, #ffb3d1 100%);
+            background: linear-gradient(160deg, #d8eef3 0%, #b9dde7 100%);
             padding: 24px 16px;
             gap: 16px;
             overflow: hidden;
@@ -677,7 +677,7 @@
             background: white;
             border-radius: 12px;
             padding: 12px 12px 42px;
-            box-shadow: 0 8px 30px rgba(255, 100, 160, 0.3);
+            box-shadow: 0 8px 30px rgba(104, 174, 192, 0.3);
             width: 170px;
             flex-shrink: 0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -701,7 +701,7 @@
 
         .polaroid:hover {
             transform: rotate(0deg) scale(1.08) translateY(-6px) !important;
-            box-shadow: 0 16px 40px rgba(255, 100, 160, 0.45);
+            box-shadow: 0 16px 40px rgba(104, 174, 192, 0.45);
             z-index: 10;
         }
 
@@ -735,12 +735,12 @@
 
         .carousel-wrapper::before {
             left: 0;
-            background: linear-gradient(to right, #ffb3d1 0%, transparent 100%);
+            background: linear-gradient(to right, #b9dde7 0%, transparent 100%);
         }
 
         .carousel-wrapper::after {
             right: 0;
-            background: linear-gradient(to left, #ffb3d1 0%, transparent 100%);
+            background: linear-gradient(to left, #b9dde7 0%, transparent 100%);
         }
 
         /* Dots indicator */
